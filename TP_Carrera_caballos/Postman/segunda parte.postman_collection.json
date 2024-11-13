@@ -1,0 +1,143 @@
+{
+	"info": {
+		"_postman_id": "e4214dc9-a188-4d3f-92de-7701b4304e66",
+		"name": "segunda parte",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "38341260"
+	},
+	"item": [
+		{
+			"name": "ver perfil (via token)",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token_user}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3001/perfil",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"perfil"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ver apuestas (via token)",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token_user}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3001/ver_apuestas_realizadas",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"ver_apuestas_realizadas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ver carreras apostables (via token)",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token_user}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3001/ver_carreras_apostables",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"ver_carreras_apostables"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "realizar apuesta (via token)",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token_user}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"idCarrera\" : \"4\",\r\n    \"idCaballo\" : \"1\",\r\n    \"monto\" : 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3001/realizar_apuesta",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"realizar_apuesta"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -12,7 +12,7 @@ class CaballoService:
     @staticmethod
     def obtener_caballo_por_id(idCaballo):
         caballo = CaballoDAO.obtener_caballo_por_id(idCaballo=idCaballo)
-        return  ({'mensaje': 'Caballo encontrado con exito'}, 200, caballo) if caballo else ({'mensaje':'No se encontro ningun caballo con ese id!'}, 404)
+        return  ({'mensaje': 'Caballo encontrado con exito'}, 200, caballo) if caballo else ({'mensaje':'No se encontro ningun caballo con ese id!'}, 404, None)
     
 
     @staticmethod
@@ -21,5 +21,5 @@ class CaballoService:
         if caballos:
             lista_caballos = [caballo.to_dict() for caballo in caballos]
             return ({'mensaje': 'Se encontraron los caballos'}, 200, lista_caballos)
-        return ({'mensaje': 'No se encontraron caballos'}, 404, caballos)
+        return ({'mensaje': 'No se encontraron caballos'}, 404, None)
        

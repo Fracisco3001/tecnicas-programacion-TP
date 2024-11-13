@@ -19,3 +19,4 @@ class CaballoDAO:
     @staticmethod
     def obtener_caballo_por_id(idCaballo):
         return Caballo.query.filter_by(idCaballo=idCaballo).first()
+ 

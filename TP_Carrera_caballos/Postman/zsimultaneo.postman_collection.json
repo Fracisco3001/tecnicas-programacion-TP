@@ -1,0 +1,177 @@
+{
+	"info": {
+		"_postman_id": "4f049954-a2d2-4706-a546-f37a7d966b4e",
+		"name": "zsimultaneo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "38341260"
+	},
+	"item": [
+		{
+			"name": "ver caballos",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token_admin}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3001/ver_caballos",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"ver_caballos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ver apuestas",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token_admin}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3001/ver_apuestas",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"ver_apuestas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "iniciar carrera",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token_admin}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"idCarrera\" : \"4\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3001/iniciar_carrera",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"iniciar_carrera"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Finalizar carrera",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token_admin}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"idCarrera\" : \"4\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3001/finalizar_carrera",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"finalizar_carrera"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "suspender carrera",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token_admin}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"idCarrera\" : \"4\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3001/suspender_carrera",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"suspender_carrera"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

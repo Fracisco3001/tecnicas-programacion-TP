@@ -12,8 +12,8 @@ port = key = config.get('MAINWORK', 'PORT')
 def create_app(config=None):
 
     app = Flask(__name__)
-    app.config['JWT_SECRET_KEY'] = key  # Debe ser segura y almacenada de forma segura
-    app.config['JWT_ACCESS_TOKEN_EXPIRES'] = 900  # 15 minutos
+    app.config['JWT_SECRET_KEY'] = key
+    app.config['JWT_ACCESS_TOKEN_EXPIRES'] = 900  # 15 minutos de duracion del token
 
 
     if config:

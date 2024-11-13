@@ -93,10 +93,21 @@ class Caballo(db.Model):
     frecuenciaVictoria = db.Column(db.Integer, CheckConstraint('frecuenciaVictoria > 0'), nullable=False)
     
     def calcularPremio(self, montoApostado):
-        premio_adicional = montoApostado * (1 / self.frecuenciaVictoria)
-        premio_total = montoApostado + premio_adicional
-        return premio_total
+        # Ajustar el multiplicador teniendo en cuenta el 20% para el casino
+        multiplicador = self.get_multiplicador()  # 80% de lo que normalmente sería el multiplicador
+        premio = montoApostado * multiplicador
+
+        return premio
+
+    def get_multiplicador_str(self):
+        multiplicador = self.frecuenciaVictoria * 0.80  
+        return format(multiplicador, ".2f")  
     
+    def get_multiplicador(self):
+        multiplicador = self.frecuenciaVictoria * 0.80  
+        return multiplicador
+
+
 
     carrera_caballo = db.Table('carreras_caballo',
         db.Column('idCarrera', db.Integer, db.ForeignKey('carreras.idCarrera'), primary_key=True),
@@ -118,14 +129,21 @@ class Apuesta(db.Model):
     idCaballo = db.Column(db.Integer, db.ForeignKey('caballos.idCaballo'), nullable=False)  # Relación con el caballo apostado
     montoVictoria = db.Column(db.Float)
     montoSuspension = db.Column(db.Float)
-    estado = db.Column(db.Integer, default=0) #0 para no pagada, 1 para pagada
+    estado = db.Column(db.Integer, default=0) #0 esperando, 1 vicotria, 2 derrota, 3 suspension 
+
 
     usuario = db.relationship('Usuario', backref='apuestas')  # Relación en SQLAlchemy
     carrera = db.relationship('Carrera', backref='apuestas')
     caballo = db.relationship('Caballo', backref='apuestas')
 
     def to_dict(self):
-        estado_str = "No pagada" if self.estado == 0 else "Pagada"
+        estados = {
+            0: "Esperando",
+            1: "Victoria",
+            2: "Derrota",
+            3: "Suspensión"
+        }
+        estado_str = estados.get(self.estado, "Estado desconocido")
         return {
             "id_apuesta": self.idApuesta,
             "dni_usuario": self.dniUsuario,

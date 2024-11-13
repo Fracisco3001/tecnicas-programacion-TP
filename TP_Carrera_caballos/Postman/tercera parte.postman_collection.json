@@ -1,0 +1,163 @@
+{
+	"info": {
+		"_postman_id": "c6630385-1757-4a9f-9c6a-a93b01706eeb",
+		"name": "tercera parte",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "38341260"
+	},
+	"item": [
+		{
+			"name": "ver todos usuarios",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{token_admin}}"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"url": "localhost:3001/ver_todos_usuarios"
+			},
+			"response": []
+		},
+		{
+			"name": "ver datos de un usuario",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{token_admin}}"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"dni\" : \"45476912\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "localhost:3001/ver_datos_usuario"
+			},
+			"response": []
+		},
+		{
+			"name": "ver carreras",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{token_admin}}"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "localhost:3001/ver_carreras"
+			},
+			"response": []
+		},
+		{
+			"name": "crear carrera",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{token_admin}}"
+					}
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombreCarrera\" : \"IDEA CABALLONARIA\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "localhost:3001/crear_carrera"
+			},
+			"response": []
+		},
+		{
+			"name": "crear caballo",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{token_admin}}"
+					}
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombreCaballo\" : \"fran\",\r\n    \"frecuenciaVictoria\" : \"5\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "localhost:3001/crear_caballo"
+			},
+			"response": []
+		},
+		{
+			"name": "agregar caballo a carrera",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{token_admin}}"
+					}
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"idCaballo\" : \"5\",\r\n    \"idCarrera\" : \"4\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "localhost:3001/agregar_caballo_a_carrera"
+			},
+			"response": []
+		}
+	]
+}

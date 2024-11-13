@@ -8,10 +8,6 @@ class ApuestaDAO:
     
     @staticmethod
     def crear_apuesta(usuario, carrera, caballo, monto):
-        print(usuario)
-        print(carrera)
-        print(caballo)
-        print(monto)
         nueva_apuesta = Apuesta(
             dniUsuario=usuario.dni,
             idCarrera=carrera.idCarrera,

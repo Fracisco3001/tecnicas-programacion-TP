@@ -21,6 +21,14 @@ class CasinoService:
 class CasinoService:
 
     @staticmethod
+    def iniciar_carrera(id_carrera):
+
+        response, status_code = CarreraService.iniciar_carrera(id_carrera)
+        return response, status_code
+
+
+
+    @staticmethod
     def finalizar_carrera(id_carrera):
 
         response, status_code = CarreraService.finalizar_carrera(id_carrera)
@@ -44,29 +52,41 @@ class CasinoService:
         response, status_code, carrera = CarreraService.obtener_carrera_por_id(id_carrera)
         if status_code != 200 or not carrera:
             return response, 404
-
         response, status_code, apuestas = ApuestaService.ver_apuestas_por_carrera(carrera)
-        if status_code != 200 or not apuestas:
-            return response, 404
+        if not apuestas:
+            return {"mensaje": "Carrera finalizada sin apuestas"}, 200
 
         resultado = {"apuestas_actualizadas": 0, "usuarios_actualizados": []}
         for apuesta in apuestas:
-            # Solo procesar apuestas pendientes y ganadoras
-            if apuesta.estado == 0 and apuesta.idCaballo == carrera.ganador_id:
-                # Determinar el monto del premio
-                monto_premio = apuesta.montoSuspension if es_suspension else apuesta.montoVictoria
-
-                # Obtener el usuario y actualizar el saldo
-                response, status_code, usuario = UsuarioService.obtener_usuario_por_dni(apuesta.dniUsuario)
-                if usuario:
-                    nuevo_saldo = usuario.saldo + monto_premio
-                    response, status_code = UsuarioService.actualizar_saldo_usuario(apuesta.dniUsuario, nuevo_saldo)
-                    if status_code == 200:
-                        ApuestaService.actualizar_estado_apuesta(apuesta.idApuesta, 1)
+            if apuesta.estado == 0: # Solo procesar apuestas en estado "Esperando" (estado == 0)
+                if es_suspension:    # Si es suspensión, actualizar el estado a "Suspensión" y otorgar monto de suspensión
+                    monto_premio = apuesta.montoSuspension
+                    response, status_code, usuario = UsuarioService.obtener_usuario_por_dni(apuesta.dniUsuario)
+                    if usuario:
+                        nuevo_saldo = usuario.saldo + monto_premio
+                        response, status_code = UsuarioService.actualizar_saldo_usuario(apuesta.dniUsuario, nuevo_saldo)
+                        if status_code == 200:
+                            ApuestaService.actualizar_estado_apuesta(apuesta.idApuesta, 3)  # Estado a "Suspensión"
+                            resultado["apuestas_actualizadas"] += 1
+                            resultado["usuarios_actualizados"].append(apuesta.dniUsuario)
+                else:
+                    # Si no es suspensión, procesar como ganadora o perdedora
+                    if apuesta.idCaballo == carrera.ganador_id:
+                        monto_premio = apuesta.montoVictoria
+                        response, status_code, usuario = UsuarioService.obtener_usuario_por_dni(apuesta.dniUsuario)
+                        if usuario:
+                            nuevo_saldo = usuario.saldo + monto_premio
+                            response, status_code = UsuarioService.actualizar_saldo_usuario(apuesta.dniUsuario, nuevo_saldo)
+                            if status_code == 200:
+                                ApuestaService.actualizar_estado_apuesta(apuesta.idApuesta, 1)  # Estado a "Victoria"
+                                resultado["apuestas_actualizadas"] += 1
+                                resultado["usuarios_actualizados"].append(apuesta.dniUsuario)
+                    else:
+                        ApuestaService.actualizar_estado_apuesta(apuesta.idApuesta, 2)  # Estado a "Derrota"
                         resultado["apuestas_actualizadas"] += 1
-                        resultado["usuarios_actualizados"].append(apuesta.dniUsuario)
-        
+
         return resultado, 200
+
 
     
 

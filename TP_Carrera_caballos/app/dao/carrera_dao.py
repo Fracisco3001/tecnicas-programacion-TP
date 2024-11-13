@@ -45,5 +45,9 @@ class CarreraDAO:
         return Carrera.query.all()
     
     @staticmethod
+    def obtener_carreras_apostables():
+        return Carrera.query.filter_by(estadoCarrera=0).all()
+    
+    @staticmethod
     def obtener_carrera_por_id(idCarrera):
         return Carrera.query.filter_by(idCarrera=idCarrera).first()

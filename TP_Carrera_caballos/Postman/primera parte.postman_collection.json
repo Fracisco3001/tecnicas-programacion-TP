@@ -1,0 +1,58 @@
+{
+	"info": {
+		"_postman_id": "c8f808ea-c03f-45da-a686-ba64981373ab",
+		"name": "primera parte",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "38341260"
+	},
+	"item": [
+		{
+			"name": "crearUsuario",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"dni\": \"admin\",\r\n    \"nombreUsuario\": \"admin\",\r\n    \"email\": \"admin@gmail.com\",\r\n    \"contraseña\": \"admin\",\r\n    \"fechaNacimiento\": \"2004-01-11\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "localhost:3001/registrar_usuario"
+			},
+			"response": []
+		},
+		{
+			"name": "logIn",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"dni\": \"admin\",\r\n    \"contraseña\": \"admin\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "localhost:3001/iniciar_sesion"
+			},
+			"response": []
+		}
+	]
+}
